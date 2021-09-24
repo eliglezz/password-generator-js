@@ -9,3 +9,5 @@ I also struggled with the organization but finally added a few notes to keep me 
 
 
 [Full page](https://eliglezz.github.io/password-generator-js/)
+
+![03-javascript-homework-demo](https://user-images.githubusercontent.com/61998811/134620698-aa9a9813-966f-4f0f-b3ff-11655014b6c2.png)
