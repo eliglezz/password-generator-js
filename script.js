@@ -6,7 +6,7 @@ var uppercaseChoice;
 var lowercaseChoice;
 var numberChoice;
 var specialChoice;
-var allChoices;
+var allChoices = [];
 var upperArray = [
   "A",
   "B",
@@ -70,7 +70,7 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.innerHTML = password;
 }
 
 // Add event listener to generate button
@@ -78,11 +78,14 @@ generateBtn.addEventListener("click", writePassword);
 
 //<==================Password Generator======================>
 function generatePassword() {
-  var passwordLength = parseInt(prompt("How long should the password be? (8-128 characters)")); // ask for length
+  var passwordLength = prompt(
+    "How long should the password be? (8-128 characters)"
+  ); // ask for length
   if (!passwordLength) {
     alert("You need a length"); // makes you chose a length
-  } else if (passwordLength < 8 || passwordLength > 128) {// makes sure you got the length between 8 and 128
-    passwordLength = parseInt(prompt("Password needs to be between 8 and 128"));
+  } else if (passwordLength < 8 || passwordLength > 128) {
+    // makes sure you got the length between 8 and 128
+    alert("Password needs to be between 8 and 128");
     return;
   } else {
     uppercaseChoice = confirm("Would you Upper Case Characters?"); // goes through and each parameter to to store the variable
@@ -91,47 +94,75 @@ function generatePassword() {
     specialChoice = confirm("Would you Special Characters?");
   }
 
-  if (!uppercaseChoice && !lowercaseChoice && !numberChoice && !specialChoice) { //at least one choice is needed
-    allChoices = alert("You need to choose a at least one");  
+  if (!uppercaseChoice && !lowercaseChoice && !numberChoice && !specialChoice) {
+    //at least one choice is needed
+    alert("You need to choose a at least one");
     return;
-  } else if (uppercaseChoice && lowercaseChoice && numberChoice && specialChoice) { // if they chose all
+  } else if (
+    uppercaseChoice &&
+    lowercaseChoice &&
+    numberChoice &&
+    specialChoice
+  ) {
+    // if they chose all
     allChoices = upperArray.concat(numberArray, lowerArray, specialArray);
-  } else if (specialChoice && lowercaseChoice && numberChoice) { //number, lower, special
+  } else if (specialChoice && lowercaseChoice && numberChoice) {
+    //number, lower, special
     allChoices = specialArray.concat(numberArray, lowerArray);
-  } else if (uppercaseChoice && lowercaseChoice && specialChoice) {// upper, lower, special
+  } else if (uppercaseChoice && lowercaseChoice && specialChoice) {
+    // upper, lower, special
     allChoices = specialArray.concat(lowerArray, upperArray);
-  } else if (uppercaseChoice && numberChoice && lowerChoice) {// upper, number, lower  
+  } else if (uppercaseChoice && numberChoice && lowerChoice) {
+    // upper, number, lower
     allChoices = lowerArray.concat(numberArray, upperArray);
-  } else if (uppercaseChoice && numberChoice && specialChoice) {// upper, number, special
+  } else if (uppercaseChoice && numberChoice && specialChoice) {
+    // upper, number, special
     allChoices = specialArray.concat(lowerArray, numberArray);
-  } else if (uppercaseChoice && lowercaseChoice) {// upper, lower
+  } else if (uppercaseChoice && lowercaseChoice) {
+    // upper, lower
     allChoices = upperArray.concat(lowerArray);
-  } else if (uppercaseChoice && specialChoice) {// upper, special
+  } else if (uppercaseChoice && specialChoice) {
+    // upper, special
     allChoices = upperArray.concat(specialArray);
-  } else if (uppercaseChoice && numberChoice) {// upper, number
+  } else if (uppercaseChoice && numberChoice) {
+    // upper, number
     allChoices = upperArray.concat(numberArray);
-  } else if (numberChoice && specialChoice) {// number, special
+  } else if (numberChoice && specialChoice) {
+    // number, special
     allChoices = specialArray.concat(numberArray);
-  } else if (numberChoice && lowercaseChoice) {// number, lower
+  } else if (numberChoice && lowercaseChoice) {
+    // number, lower
     allChoices = numberArray.concat(lowerArray);
-  } else if (lowercaseChoice && specialChoice) {// special, lower
+  } else if (lowercaseChoice && specialChoice) {
+    // special, lower
     allChoices = specialArray.concat(lowerArray);
-  } else if (uppercaseChoice) {// upper
+  } else if (uppercaseChoice) {
+    // upper
     allChoices = upperArray;
-  } else if (lowercaseChoice) {// lower
+  } else if (lowercaseChoice) {
+    // lower
     allChoices = lowerArray;
-  } else if (specialChoice) {// special
+  } else if (specialChoice) {
+    // special
     allChoices = specialArray;
-  } else if (numberChoice) {// number
+  } else if (numberChoice) {
+    // number
     allChoices = numberArray;
   }
 
-  
-  for (var i = 0; i < passwordLength; i++) {
-    var password = allChoices[Math.floor(Math.random() * allChoices.length)];
-    return password;
+  for (let i = 0; i < allChoices.length; i++) {
+    const element = allChoices[i];
+    var newPassword = allChoices[Math.floor(Math.random() * passwordLength)];
+    console.log(newPassword);
   }
 }
+// for (let i = 0; i < passwordLength; i++) {
+//   var password = allChoices[Math.floor( Math.random() * passwordLength)] ;
+//   console.log(password);
+//   return password;
+
+// }
+
 //GIVEN I need a new, secure password
 // WHEN I click the button to generate a password
 //                      TODO: write generatePassword func
