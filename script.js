@@ -64,12 +64,13 @@ var lowerArray = [
   "z",
 ];
 var numberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var specialArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
+var specialArray = ["!", "%", "&", "(", "@", "~", ")"];
+var password = [];
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  
   passwordText.innerHTML = password;
 }
 
@@ -150,11 +151,14 @@ function generatePassword() {
     allChoices = numberArray;
   }
 
-  for (let i = 0; i < allChoices.length; i++) {
+  for (let i = 0; i < passwordLength; i++) {
     const element = allChoices[i];
     var newPassword = allChoices[Math.floor(Math.random() * passwordLength)];
-    console.log(newPassword);
+    password.push(newPassword);
+    console.log(password);
   }
+  password.join(" ");
+  return password;
 }
 // for (let i = 0; i < passwordLength; i++) {
 //   var password = allChoices[Math.floor( Math.random() * passwordLength)] ;
