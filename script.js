@@ -157,7 +157,6 @@ function generatePassword() {
     password.push(newPassword);
     console.log(password);
   }
-  password.join(" ");
   return password;
 }
 // for (let i = 0; i < passwordLength; i++) {
