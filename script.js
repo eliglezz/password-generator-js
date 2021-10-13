@@ -157,7 +157,7 @@ function generatePassword() {
     password.push(newPassword);
     console.log(password);
   }
-  return password;
+  return password.join("");
 }
 // for (let i = 0; i < passwordLength; i++) {
 //   var password = allChoices[Math.floor( Math.random() * passwordLength)] ;
